@@ -4,12 +4,16 @@ import java.util.Random;
 public class RandomPermutation {
     public static void main(String[] args) {
 
-        int p[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int pLength = 10;
+        int p[] = new int[pLength];
+        for (int i = 0; i < pLength; i++) {
+            p[i] = i + 1;
+        }
 
-        int r[] = new int[p.length];
+        int r[] = new int[pLength];
 
-        for (int i = 0; i < 10*p.length; i++) {
-            int index = next(p);
+        for (int i = 0; i < pLength; i++) {
+            int index = next(p, pLength - i);
             r[i] = p[index];
             p = removeElement(p, index);
         }
@@ -17,8 +21,8 @@ public class RandomPermutation {
         System.out.println(Arrays.toString(r));
     }
 
-    public static int next(int p[]) {
-        return new Random().nextInt(p.length);
+    public static int next(int p[], int length) {
+        return new Random().nextInt(length);
     }
 
     public static int[] removeElement(int[] array, int index) {
